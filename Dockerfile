@@ -30,13 +30,10 @@ RUN wget "https://github.com/rbenv/ruby-build/archive/refs/tags/v20230428.tar.gz
 RUN PREFIX=/usr/local ./ruby-build-20230428/install.sh
 RUN ruby-build $RUBY_VERSION /usr/local/
 
-# Install node and yarn
-ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION $NODE_VERSION
-RUN mkdir -p $NVM_DIR
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm use $NODE_VERSION \
-    && npm install --global yarn@$YARN_VERSION
-ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
-ENV PATH      $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
+# Install Node
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && apt install -y nodejs
+
+# Install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt install -y yarn
