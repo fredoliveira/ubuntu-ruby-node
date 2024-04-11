@@ -31,7 +31,7 @@ RUN PREFIX=/usr/local ./ruby-build-20230428/install.sh
 RUN ruby-build $RUBY_VERSION /usr/local/
 
 # Install Node
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && apt install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt install -y nodejs
 
 # Install yarn
 RUN apt remove cmdtest yarn
