@@ -1,25 +1,25 @@
 FROM ubuntu:latest
 
 ARG RUBY_VERSION=3.2.1
-ARG NODE_VERSION=16.15.1
+ARG NODE_VERSION=18.20.1
 ARG YARN_VERSION=1.22.19
 
 RUN apt update && \
-    apt install -y \
-      git \
-      curl \
-      libssl-dev \
-      libreadline-dev \
-      zlib1g-dev \
-      autoconf \
-      bison \
-      build-essential \
-      libyaml-dev \
-      libreadline-dev \
-      libncurses5-dev \
-      libffi-dev \
-      libgdbm-dev \
-      wget
+  apt install -y \
+  git \
+  curl \
+  libssl-dev \
+  libreadline-dev \
+  zlib1g-dev \
+  autoconf \
+  bison \
+  build-essential \
+  libyaml-dev \
+  libreadline-dev \
+  libncurses5-dev \
+  libffi-dev \
+  libgdbm-dev \
+  wget
 
 # Work from a place we can clean up later
 WORKDIR /tmp
